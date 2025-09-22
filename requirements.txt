@@ -1,0 +1,10 @@
+langchain
+openai
+pandas
+sqlalchemy
+python-dotenv
+kaggle
+serpapi
+requests
+tqdm
+typeguard
