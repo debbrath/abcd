@@ -1,25 +1,22 @@
-multi-tool-medical-agent/
-│
-├── data/                       # Place downloaded Kaggle datasets here
-│   ├── heart.csv
-│   ├── cancer.csv
-│   ├── diabetes.csv
-│
-├── scripts/                       # Helpers for dataset conversion
-│   ├── convert_to_sqlite.py       # Convert one CSV → SQLite DB
-│   ├── batch_convert.py           # Convert all 3 datasets
-│
-├── tools/                         # Agent tools
-│   ├── db_tools.py  # HeartDiseaseDBTool, CancerDBTool, DiabetesDBTool
-│   ├── web_search_tool.py      # MedicalWebSearchTool (SerpAPI / Bing)
-│
-├── .env.example                   # Template for API keys
-├── requirements.txt               # Python dependencies
-├── main_agent.py                  # Main entrypoint (agent assembly + CLI)
-├── COLAB.md                       # Step-by-step Colab guide
-├── README.md                      # Project instructions (copied from canvas)
-│
-└── (generated SQLite DBs after running conversion)
-    ├── heart_disease.db
-    ├── cancer.db
-    ├── diabetes.db
+Project layout 
+multi-tool-med-agent/
+├─ data/                      # downloaded CSVs (kaggle)
+├─ dbs/              # resulting sqlite db files: heart_disease.db, cancer.db, diabetes.db
+├─ scripts/
+│  ├─ 
+│  └─ csv_to_sqlite.py        # converts CSV -> sqlite with type mapping
+├─ agents/
+│  ├─ db_tools.py             # HeartDiseaseDBTool, CancerDBTool, DiabetesDBTool (LangChain SQL chains)
+│  ├─ web_search_tool.py      # MedicalWebSearchTool (SerpAPI wrapper)
+│  └─ main_agent.py           # router + example loop / API
+├─ .env                       # API keys (OPENAI_API_KEY, SERPAPI_API_KEY)
+├─ requirements.txt
+└─ README.md
+
+
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python scripts/csv_to_sqlite.py
+cd agents
+python main_agent.py
