@@ -17,6 +17,14 @@ multi-tool-med-agent/
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+
 python scripts/csv_to_sqlite.py
 cd agents
 python main_agent.py
+
+
+
+
+
+
+ 

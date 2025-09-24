@@ -13,11 +13,20 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 from langchain_groq import ChatGroq
 
 
+from langchain_groq import ChatGroq
+import os
+
 
 def build_agent():
-    llm = ChatOpenAI(temperature=0)
+    #llm = ChatOpenAI(temperature=0)
     #llm = ChatGroq(model="llama3-70b-8192", temperature=0)
-
+    # Load key from env
+    api_key = os.getenv("GROQ_API_KEY")
+    llm = ChatGroq(
+        model="llama-3.3-70b-versatile",  # Updated model
+        temperature=0,
+        groq_api_key=api_key
+    )
     # Initialize DB tools
     heart_tool = HeartDiseaseDBTool(llm)
     cancer_tool = CancerDBTool(llm)
@@ -60,7 +69,7 @@ def build_agent():
 def run_interactive():
     agent = build_agent()
     print("🧠 Multi-tool medical agent (type 'exit' to quit)")
-    while True:
+    while True:        
         q = input("User: ")
         if q.strip().lower() in ("exit", "quit"):
             break

@@ -11,6 +11,7 @@ typeguard
 langchain-community 
 langchain-experimental
 langchain-groq
+pyprojroot
 
 
 
